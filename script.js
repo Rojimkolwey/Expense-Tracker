@@ -15,6 +15,8 @@ const submitBtn = document.getElementById('submitBtn');
 const descriptionError = document.getElementById('descriptionError');
 const amountError = document.getElementById('amountError');
 
+let transactions =[]
+
 
 function showError(input, errorElement, message){
     errorElement.textContent = message;
@@ -29,6 +31,25 @@ transactionForm.addEventListener('submit', function(e){
     const descriptionValue = description.value;
     const amountValue  = amount .value;
     const typeValue = type.value;
+
+
+    
+//c object create
+
+const transaction ={
+
+    id:Date.now(),
+    description:(descriptionValue),
+    amount:parseFloat(amountValue),
+    type:typeValue,
+}
+console.log(transaction)
+
+
+//log in data in the array
+
+transactions.push(transactions);
+console.log(transactions)
 
 
     //inputs validations
@@ -49,4 +70,3 @@ transactionForm.addEventListener('submit', function(e){
 console.log('validation passed');
 
 })
-
