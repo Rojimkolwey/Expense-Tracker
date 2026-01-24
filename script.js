@@ -25,6 +25,39 @@ function showError(input, errorElement, message){
 }
 
 
+
+function displayTransaction(transaction){
+
+       // 1. Create a list item (li)
+
+    const li =document.createElement('li')
+
+    // 2. Add the 'transaction-item' class to it
+
+li.classList.add('transaction-item');
+
+    // 3. Set the inner HTML with the transaction details
+
+    li.innerHTML=`
+       <div class="transaction-info">
+            <h4>${transaction.description}</h4>
+            <p>${transaction.type}</p>
+        </div>
+        <span class="transaction-amount ${transaction.type}">
+            $${transaction.amount}
+        </span>
+        <button class="btn-delete">Delete</button>
+    `;
+
+  // Add the li to the transaction list
+    transactionList.appendChild(li);
+
+
+    
+
+}
+
+
 transactionForm.addEventListener('submit', function(e){
      e.preventDefault()
 
@@ -33,23 +66,6 @@ transactionForm.addEventListener('submit', function(e){
     const typeValue = type.value;
 
 
-    
-//c object create
-
-const transaction ={
-
-    id:Date.now(),
-    description:(descriptionValue),
-    amount:parseFloat(amountValue),
-    type:typeValue,
-}
-console.log(transaction)
-
-
-//log in data in the array
-
-transactions.push(transactions);
-console.log(transactions)
 
 
     //inputs validations
@@ -69,4 +85,29 @@ console.log(transactions)
 
 console.log('validation passed');
 
+
+//c object create
+
+const transaction ={
+
+    id:Date.now(),
+    description:(descriptionValue),
+    amount:parseFloat(amountValue),
+    type:typeValue,
+}
+console.log(transaction)
+
+//log in data in the array
+
+transactions.push(transaction);
+console.log(transactions)
+
+    transactions.push(transaction);
+displayTransaction(transaction);
+
+
+
+
+
 })
+
