@@ -7,11 +7,9 @@ const description = document.getElementById('description');
 const amount = document.getElementById('amount');
 const type = document.getElementById('type');
 const submitBtn = document.getElementById('submitBtn');
+const emptyMessage = document.getElementById('emptyMessage')
 
 //fetch error ids
-
-
-
 const descriptionError = document.getElementById('descriptionError');
 const amountError = document.getElementById('amountError');
 
@@ -26,15 +24,20 @@ function showError(input, errorElement, message){
 
 
 
+
+
+
 function displayTransaction(transaction){
 
        // 1. Create a list item (li)
 
     const li =document.createElement('li')
+    const button = document.createElement('button');
 
     // 2. Add the 'transaction-item' class to it
 
 li.classList.add('transaction-item');
+
 
     // 3. Set the inner HTML with the transaction details
 
@@ -52,10 +55,35 @@ li.classList.add('transaction-item');
   // Add the li to the transaction list
     transactionList.appendChild(li);
 
+}
 
+//update Balance
+    function updateBalance(){
+
+        let income = 0;
+        let expense = 0;
+
+
+        for(let i=0; i<transactions.length; i++){
+            const transaction=transactions[i];
+
+            if(transaction.type === 'income'){
+                income += transaction.amount;
+            }
+            else if(transaction.type=== 'expense'){
+                expense += transaction.amount;
+            }
+
+
+        }
+ const balance = income - expense;
+
+  console.log('income:', income);
+  console.log('expense:', expense);
+  console.log('balance:', balance);
+    }
     
 
-}
 
 
 transactionForm.addEventListener('submit', function(e){
@@ -68,13 +96,20 @@ transactionForm.addEventListener('submit', function(e){
 
 
 
-    //inputs validations
+//inputs validations
 
     if(descriptionValue ===''){
 
      showError(description, descriptionError, "Enter description")
  return;
     }
+    if(transactions.length > 0){
+        emptyMessage.style.display='none';
+    }
+
+    if (transactions.length === 0) {
+  emptyMessage.style.display = 'block';
+}
 
     else if(amountValue === '' || amountValue <= 0){
 
@@ -84,6 +119,10 @@ transactionForm.addEventListener('submit', function(e){
   
 
 console.log('validation passed');
+
+
+
+
 
 
 //c object create
@@ -101,13 +140,19 @@ console.log(transaction)
 
 transactions.push(transaction);
 console.log(transactions)
-
-    transactions.push(transaction);
 displayTransaction(transaction);
+updateBalance();
+
+emptyMessage.style.display='none';
 
 
+// Clear form inputs
+description.value = '';
+amount.value = '';
+type.value ='expense';
 
 
 
 })
+
 

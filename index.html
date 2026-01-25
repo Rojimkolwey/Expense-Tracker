@@ -60,10 +60,10 @@
 
                 <div class="form-group">
                     <label for="type">Type</label>
-                    <select id="type">
-                        <option value="income">Income</option>
-                        <option value="expense">Expense</option>
-                    </select>
+                 <select id="type">
+                    <option value="expense">Expense</option>
+                    <option value="income">Income</option>
+                 </select>
                 </div>
 
                 <button type="submit" class="btn-add">Add Transaction</button>
@@ -75,7 +75,7 @@
             <h2>Transaction History</h2>
             <ul class="transaction-list" id="transactionList">
                 <div class="empty-state">
-                    <p>No transactions yet. Add one above!</p>
+                    <p id="emptyMessage" class="empty-message">No transactions yet. Add one above!</p>
                 </div>
             </ul>
         </div>
