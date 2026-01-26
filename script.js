@@ -81,10 +81,15 @@ li.classList.add('transaction-item');
   console.log('income:', income);
   console.log('expense:', expense);
   console.log('balance:', balance);
-    }
+
+  // update the displays
+
+totalIncome.textContent = `$${income.toFixed(2)}`;
+totalExpense.textContent = `$${expense.toFixed(2)}`;
+totalBalance.textContent = `$${balance.toFixed(2)}`;
     
-
-
+    
+    }
 
 transactionForm.addEventListener('submit', function(e){
      e.preventDefault()
@@ -154,5 +159,6 @@ type.value ='expense';
 
 
 })
+
 
 
