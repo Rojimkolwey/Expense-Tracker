@@ -13,6 +13,10 @@ const emptyMessage = document.getElementById('emptyMessage')
 const descriptionError = document.getElementById('descriptionError');
 const amountError = document.getElementById('amountError');
 
+
+// const stringData = localStorage.getItem('transactions');
+// const transactions = JSON.parse(stringData)
+
 let transactions =[]
 
 
@@ -22,8 +26,24 @@ function showError(input, errorElement, message){
     input.style.border="2px solid red";
 }
 
+//store data in local storage
 
+function saveToLocalStorage(){
 
+    // Convert array to string for saving
+    const stringData =JSON.stringify(transactions);
+    localStorage.setItem('transactions', stringData)
+ 
+}
+
+function loadFromLocalStorage(){
+    const stringData = localStorage.getItem('transactions')
+
+    if(stringData){
+
+        transactions=JSON.parse(stringData)
+    }
+}
 
 
 
@@ -127,9 +147,6 @@ console.log('validation passed');
 
 
 
-
-
-
 //c object create
 
 const transaction ={
@@ -144,7 +161,7 @@ console.log(transaction)
 //log in data in the array
 
 transactions.push(transaction);
-console.log(transactions)
+saveToLocalStorage();
 displayTransaction(transaction);
 updateBalance();
 
@@ -159,6 +176,14 @@ type.value ='expense';
 
 
 })
+
+// Load data when page loads
+loadFromLocalStorage();
+
+// Display all loaded transactions
+transactions.forEach(transaction => {
+    displayTransaction(transaction);
+});
 
 
 
