@@ -43,6 +43,10 @@ function loadFromLocalStorage(){
 
         transactions=JSON.parse(stringData)
     }
+    if(transactions.length>0){
+        emptyMessage.style.display='none';
+
+    }
 }
 
 
@@ -52,7 +56,7 @@ function displayTransaction(transaction){
        // 1. Create a list item (li)
 
     const li =document.createElement('li')
-    const button = document.createElement('button');
+
 
     // 2. Add the 'transaction-item' class to it
 
@@ -69,11 +73,30 @@ li.classList.add('transaction-item');
         <span class="transaction-amount ${transaction.type}">
             $${transaction.amount}
         </span>
-        <button class="btn-delete">Delete</button>
+        <button class="btn-delete" data-id='${transaction.id}'>Delete</button>
     `;
 
   // Add the li to the transaction list
     transactionList.appendChild(li);
+
+
+//delete transaction
+
+const deleteBtn = li.querySelector('.btn-delete');
+deleteBtn.addEventListener('click', function(){
+const id =transaction.id;
+
+const index = transactions.findIndex(t=>t.id ===id);
+
+if(index !== -1){
+    transactions.splice(index, 1);
+}
+
+console.log('Transactions after delete:' , transactions);
+
+})
+
+
 
 }
 
