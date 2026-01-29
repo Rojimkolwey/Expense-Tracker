@@ -91,6 +91,9 @@ const index = transactions.findIndex(t=>t.id ===id);
 if(index !== -1){
     transactions.splice(index, 1);
 }
+saveToLocalStorage();
+li.remove();
+updateBalance();
 
 console.log('Transactions after delete:' , transactions);
 
