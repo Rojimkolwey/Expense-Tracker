@@ -26,6 +26,23 @@ function showError(input, errorElement, message){
     input.style.border="2px solid red";
 }
 
+//clear error on typing
+
+function clearError(input, errorElement){
+errorElement.textContent='';
+errorElement.classList.remove('active');
+input.style.border="2px solid #e0e0e0";
+}
+
+description.addEventListener('input', function(){
+    clearError(description, descriptionError);
+})
+
+amount.addEventListener('input', function(){
+    clearError(amount, amountError);
+})
+
+
 //store data in local storage
 
 function saveToLocalStorage(){
