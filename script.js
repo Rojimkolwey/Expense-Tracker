@@ -73,6 +73,7 @@ function displayTransaction(transaction){
        // 1. Create a list item (li)
 
     const li =document.createElement('li')
+    const editBtn =li.querySelector('.btn-edit')
 
 
     // 2. Add the 'transaction-item' class to it
@@ -90,6 +91,7 @@ li.classList.add('transaction-item');
         <span class="transaction-amount ${transaction.type}">
             $${transaction.amount}
         </span>
+        <button class="btn-edit" data-id='${transaction.id}'>Edit</button>
         <button class="btn-delete" data-id='${transaction.id}'>Delete</button>
     `;
 
@@ -179,7 +181,7 @@ transactionForm.addEventListener('submit', function(e){
   emptyMessage.style.display = 'block';
 }
 
-    else if(amountValue === '' || amountValue <= 0){
+    if(amountValue === '' || amountValue <= 0){
 
         showError(amount, amountError, "Enter a valid amount greater than zero")
  return;
