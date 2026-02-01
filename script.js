@@ -17,7 +17,8 @@ const amountError = document.getElementById('amountError');
 // const stringData = localStorage.getItem('transactions');
 // const transactions = JSON.parse(stringData)
 
-let transactions =[]
+let transactions =[];
+let editingId = null;
 
 
 function showError(input, errorElement, message){
@@ -73,7 +74,7 @@ function displayTransaction(transaction){
        // 1. Create a list item (li)
 
     const li =document.createElement('li')
-    const editBtn =li.querySelector('.btn-edit')
+    
 
 
     // 2. Add the 'transaction-item' class to it
@@ -102,6 +103,7 @@ li.classList.add('transaction-item');
 //delete transaction
 
 const deleteBtn = li.querySelector('.btn-delete');
+const editBtn =li.querySelector('.btn-edit')
 deleteBtn.addEventListener('click', function(){
 const id =transaction.id;
 
@@ -115,6 +117,17 @@ li.remove();
 updateBalance();
 
 console.log('Transactions after delete:' , transactions);
+
+})
+
+//edit transaction
+
+editBtn.addEventListener('click', function(){
+description.value = transaction.description;
+amount.value = transaction.amount;
+type.value= transaction.type;
+editingId = transaction.id;
+
 
 })
 
