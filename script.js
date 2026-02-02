@@ -205,32 +205,45 @@ console.log('validation passed');
 
 
 
+
 //c object create
+console.log('validation passed');
 
-const transaction ={
-
-    id:Date.now(),
-    description:(descriptionValue),
-    amount:parseFloat(amountValue),
-    type:typeValue,
+if(editingId !== null) {
+    // EDITING MODE - update existing transaction
+    const index = transactions.findIndex(t => t.id === editingId);
+    
+    transactions[index].description = descriptionValue;
+    transactions[index].amount = parseFloat(amountValue);
+    transactions[index].type = typeValue;
+    
+    editingId = null;
+    
+    // Refresh display
+    transactionList.innerHTML = '';
+    transactions.forEach(t => displayTransaction(t));
+    
+} else {
+    // ADD MODE - create new transaction
+    const transaction = {
+        id: Date.now(),
+        description: descriptionValue,
+        amount: parseFloat(amountValue),
+        type: typeValue
+    }
+    
+    transactions.push(transaction);
+    displayTransaction(transaction);
 }
-console.log(transaction)
 
-//log in data in the array
-
-transactions.push(transaction);
+// Common code for both
 saveToLocalStorage();
-displayTransaction(transaction);
 updateBalance();
-
 emptyMessage.style.display='none';
 
-
-// Clear form inputs
 description.value = '';
 amount.value = '';
 type.value ='expense';
-
 
 
 })
