@@ -131,8 +131,6 @@ editingId = transaction.id;
 
 })
 
-
-
 }
 
 //update Balance

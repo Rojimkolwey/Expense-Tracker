@@ -230,6 +230,23 @@
             color: #f44336;
         }
 
+/*edit button */
+
+        .btn-edit {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
+    transition: background 0.3s;
+}
+
+.btn-edit:hover {
+    background: #764ba2;
+}
         .btn-delete {
             background: #f44336;
             color: white;
